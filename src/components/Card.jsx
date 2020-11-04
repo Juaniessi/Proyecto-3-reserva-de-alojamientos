@@ -63,7 +63,9 @@ function Card(props) {
           </div>
         </div>
       </div>
-      <button className="btn">Reservar</button>
+      <button className="btn" onClick={() => alert("lo' jumio de vacas")}>
+        Reservar
+      </button>
     </article>
   );
 }
