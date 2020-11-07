@@ -2,14 +2,25 @@ import React from "react";
 
 class Header extends React.Component {
   render() {
-    const hoy = new Date().toISOString().substring(0, 10); //nos permite poner fechas anteriores a hoy (en la vida real)
-    console.log(hoy);
-    const { handleInput } = this.props;
+    const {
+      handleInput,
+      handleDate,
+      today,
+      availabilityFrom,
+      availabilityTo
+    } = this.props;
+
+    const getDateValue = (date) => {
+      return date === "" ? "" : date.toISOString().substr(0, 10);
+    };
+
+    console.log(availabilityFrom);
+    console.log(availabilityTo);
     return (
       <div className="header">
         <div className="info">
           <h1>
-            Hoteles <i class="fas fa-umbrella-beach"></i>
+            Hoteles <i className="fas fa-umbrella-beach"></i>
           </h1>
           <h2>"fecha reactiva"</h2>
         </div>
@@ -20,9 +31,10 @@ class Header extends React.Component {
               <input
                 type="date"
                 id="start"
-                name="trip-start"
-                value={hoy}
-                min={hoy}
+                name="availabilityFrom"
+                value={getDateValue(availabilityFrom)}
+                min={getDateValue(today)} //obtengo la fecha desde today
+                onChange={handleDate}
                 //max={hoy.valueOf() + 31560000} no nos hace falta
               />
             </div>
@@ -31,9 +43,10 @@ class Header extends React.Component {
               <input
                 type="date"
                 id="start"
-                name="trip-start"
-                value="2018-07-22"
-                min="2018-01-01"
+                name="availabilityTo"
+                value={getDateValue(availabilityTo)}
+                min={getDateValue(availabilityFrom)}
+                onChange={handleDate}
                 //max="2018-12-31" no nos hace falta
               />
             </div>
