@@ -1,7 +1,6 @@
 import React from "react";
 
 function Card(props) {
-  console.log(props);
   const {
     slug,
     name,
@@ -63,9 +62,7 @@ function Card(props) {
           </div>
         </div>
       </div>
-      <button className="btn" onClick={() => alert("lo' jumio de vacas")}>
-        Reservar
-      </button>
+      <button className="btn">Reservar</button>
     </article>
   );
 }

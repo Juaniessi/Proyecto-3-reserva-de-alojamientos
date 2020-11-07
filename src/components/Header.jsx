@@ -4,10 +4,13 @@ class Header extends React.Component {
   render() {
     const hoy = new Date().toISOString().substring(0, 10); //nos permite poner fechas anteriores a hoy (en la vida real)
     console.log(hoy);
+    const { handleInput } = this.props;
     return (
       <div className="header">
         <div className="info">
-          <h1>Hoteles</h1>
+          <h1>
+            Hoteles <i class="fas fa-umbrella-beach"></i>
+          </h1>
           <h2>"fecha reactiva"</h2>
         </div>
         <div className="filters-bar">
@@ -36,31 +39,31 @@ class Header extends React.Component {
             </div>
             <div className="envoltorio">
               <i className="fas fa-globe input-icon"></i>
-              <select name="paises" id="">
-                <option value="todos">Todos los países</option>
-                <option value="argentina">Argentina</option>
-                <option value="brasil">Brasil</option>
-                <option value="chile">Chile</option>
-                <option value="uruguay">Uruguay</option>
+              <select name="country" id="" onChange={handleInput}>
+                <option value="any">Todos los países</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Brasil">Brasil</option>
+                <option value="Chile">Chile</option>
+                <option value="Uruguay">Uruguay</option>
               </select>
             </div>
             <div className="envoltorio">
               <i className="fas fa-dollar-sign pesitos input-icon"></i>
-              <select name="precios" id="">
-                <option value="cualquiera">Cualquier precio</option>
-                <option value="$">$</option>
-                <option value="$$">$$</option>
-                <option value="$$$">$$$</option>
-                <option value="$$$$">$$$$</option>
+              <select name="price" id="" onChange={handleInput}>
+                <option value="any">Cualquier precio</option>
+                <option value="1">$</option>
+                <option value="2">$$</option>
+                <option value="3">$$$</option>
+                <option value="4">$$$$</option>
               </select>
             </div>
             <div className="envoltorio">
               <i className="fas fa-bed input-icon"></i>
-              <select name="tamaño" id="">
-                <option value="cualquiera">Cualquier tamaño</option>
-                <option value="pequeño">Pequeño</option>
-                <option value="mediano">Mediano</option>
-                <option value="grande">Grande</option>
+              <select name="size" id="" onChange={handleInput}>
+                <option value="any">Cualquier tamaño</option>
+                <option value="Pequeño">Pequeño</option>
+                <option value="Mediano">Mediano</option>
+                <option value="Grande">Grande</option>
               </select>
             </div>
           </form>

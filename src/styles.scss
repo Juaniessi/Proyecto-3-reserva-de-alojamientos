@@ -50,8 +50,28 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-evenly;
-}  
+}
 
+.empty-hotels{
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+  height: 40vh;
+  background-color: goldenrod;
+  margin-top: 2rem;
+  border-radius: 25px;
+  box-shadow: 0px 2px 5px 2px grey;
+  h2{
+    font-size: 1.25rem;
+    margin: 2rem;
+    color: gainsboro;
+  }
+  .fa-skull-crossbones{
+    font-size: 100px;
+    color: gainsboro;
+  }
+  
+}
 .card{
   margin: 1rem 0;
   display: flex;
