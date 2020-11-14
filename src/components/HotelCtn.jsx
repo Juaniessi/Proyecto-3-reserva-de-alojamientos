@@ -89,8 +89,6 @@ class HotelCtn extends React.Component {
 
   render() {
     const hotels = this.filterCards(); //llamo a la función y la almaceno en una varaible
-    //console.log(this.state.availabilityFrom);
-    //console.log(this.state.availabilityTo);
     return (
       <div className="hotel">
         <Header
