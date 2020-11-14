@@ -10,7 +10,8 @@ class Header extends React.Component {
       availabilityTo,
       size,
       price,
-      country
+      country,
+      filtersReset
     } = this.props;
 
     const getDateValue = (date) => {
@@ -105,7 +106,12 @@ class Header extends React.Component {
             </div>
             <div className="envoltorio">
               <i className="fas fa-globe input-icon"></i>
-              <select name="country" id="" onChange={handleInput}>
+              <select
+                value={country}
+                name="country"
+                id=""
+                onChange={handleInput}
+              >
                 <option value="any">Todos los países</option>
                 <option value="Argentina">Argentina</option>
                 <option value="Brasil">Brasil</option>
@@ -115,7 +121,7 @@ class Header extends React.Component {
             </div>
             <div className="envoltorio">
               <i className="fas fa-dollar-sign pesitos input-icon"></i>
-              <select name="price" id="" onChange={handleInput}>
+              <select value={price} name="price" id="" onChange={handleInput}>
                 <option value="any">Cualquier precio</option>
                 <option value="1">$</option>
                 <option value="2">$$</option>
@@ -125,7 +131,7 @@ class Header extends React.Component {
             </div>
             <div className="envoltorio">
               <i className="fas fa-bed input-icon"></i>
-              <select name="size" id="" onChange={handleInput}>
+              <select value={size} name="size" id="" onChange={handleInput}>
                 <option value="any">Cualquier tamaño</option>
                 <option value="Pequeño">Pequeño</option>
                 <option value="Mediano">Mediano</option>
@@ -133,6 +139,9 @@ class Header extends React.Component {
               </select>
             </div>
           </form>
+          <button className="reset-filters" onClick={filtersReset}>
+            Resetear Filtros
+          </button>
         </div>
       </div>
     );

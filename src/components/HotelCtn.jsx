@@ -40,6 +40,16 @@ class HotelCtn extends React.Component {
     availabilityTo: ""
   };
 
+  filtersReset = () => {
+    this.setState({
+      country: "any",
+      size: "any",
+      price: "any",
+      availabilityFrom: "",
+      availabilityTo: ""
+    });
+  };
+
   doesSizeMatters = (size, state) => {
     switch (state) {
       case "Pequeño":
@@ -92,6 +102,7 @@ class HotelCtn extends React.Component {
           size={this.state.size}
           price={this.state.price}
           country={this.state.country}
+          filtersReset={this.filtersReset}
         />
         <div className="cards-container">
           {hotels.length !== 0 ? (
