@@ -29,6 +29,7 @@ class HotelCtn extends React.Component {
         //e.target.name le dice desde donde lo llamo (inicio o fin del viaje) y el newDate setea la fecha.
       });
     }
+    this.filterCards(); //es para que se entere que tiene que foltrar todas las veces que toco el botón
   };
 
   state = {
@@ -65,7 +66,14 @@ class HotelCtn extends React.Component {
       let sizeFilter =
         this.state.size === "any" ||
         this.doesSizeMatters(hotel.rooms, this.state.size); //le paso el hotel y el tamaño del hotel
-      return countryFilter && sizeFilter && priceFilter;
+      let dateFilter =
+        this.state.availabilityFrom === "" || this.state.availabilityTo === ""
+          ? true
+          : this.state.availabilityFrom.valueOf() >=
+              hotel.availabilityFrom.valueOf() &&
+            this.state.availabilityTo.valueOf() <=
+              hotel.availabilityTo.valueOf();
+      return countryFilter && sizeFilter && priceFilter && dateFilter;
     });
   };
 
@@ -81,6 +89,9 @@ class HotelCtn extends React.Component {
           today={today}
           availabilityFrom={this.state.availabilityFrom}
           availabilityTo={this.state.availabilityTo}
+          size={this.state.size}
+          price={this.state.price}
+          country={this.state.country}
         />
         <div className="cards-container">
           {hotels.length !== 0 ? (

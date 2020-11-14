@@ -18,6 +18,12 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
+    h1{
+      margin-bottom: 1rem;
+    }
+    h2{
+      font-size: 1.1rem;
+    }
   }
   .filters-bar{
     background-color: dodgerblue;

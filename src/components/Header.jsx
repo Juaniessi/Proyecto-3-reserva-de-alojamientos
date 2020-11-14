@@ -7,22 +7,75 @@ class Header extends React.Component {
       handleDate,
       today,
       availabilityFrom,
-      availabilityTo
+      availabilityTo,
+      size,
+      price,
+      country
     } = this.props;
 
     const getDateValue = (date) => {
+      //función para escribir el precio en el header
       return date === "" ? "" : date.toISOString().substr(0, 10);
     };
 
-    console.log(availabilityFrom);
-    console.log(availabilityTo);
+    let options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    };
+
+    const getDateString = () => {
+      //función para escribir la fecha en el header
+      return `Desde: ${
+        availabilityFrom &&
+        availabilityFrom.toLocaleDateString("es-ES", options)
+      } 
+              Hasta: ${
+                availabilityTo &&
+                availabilityTo.toLocaleDateString("es-ES", options)
+              }`;
+    };
+
+    const getSizeString = () => {
+      //función para escribir el tamaño en el header
+      return size === "any" ? "De cualquier tamaño" : `De tamaño ${size}`;
+    };
+
+    const getPriceString = () => {
+      //función para escribir el precio en el header
+      switch (parseInt(price, 10)) {
+        case 1:
+          return "Económico";
+        case 2:
+          return "Mediano";
+        case 3:
+          return "Costoso";
+        case 4:
+          return "Muy costoso";
+        default:
+          return "De cualquier precio";
+      }
+    };
+    const getCountryString = () => {
+      return country === "any" ? "De cualquier país" : `País: ${country}`;
+    };
+
     return (
       <div className="header">
         <div className="info">
           <h1>
             Hoteles <i className="fas fa-umbrella-beach"></i>
           </h1>
-          <h2>"fecha reactiva"</h2>
+          <h2>
+            {getDateString()}
+            <br />
+            {getCountryString()}
+            <br />
+            {getPriceString()}
+            <br />
+            {getSizeString()}
+          </h2>
         </div>
         <div className="filters-bar">
           <form className="filters" action="">
