@@ -1,6 +1,62 @@
 import React from "react";
 
 class Header extends React.Component {
+  options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  };
+
+  getDateValue = (date) => {
+    //función para escribir el precio en el header
+    return date === "" ? "" : date.toISOString().substr(0, 10);
+  };
+
+  getDateString = () => {
+    //función para escribir la fecha en el header
+    return `Desde: ${
+      this.props.availabilityFrom &&
+      this.props.availabilityFrom.toLocaleDateString("es-ES", this.options)
+    } 
+            Hasta: ${
+              this.props.availabilityTo &&
+              this.props.availabilityTo.toLocaleDateString(
+                "es-ES",
+                this.options
+              )
+            }`;
+  };
+
+  getSizeString = () => {
+    //función para escribir el tamaño en el header
+    return this.props.size === "any"
+      ? "De cualquier tamaño"
+      : `De tamaño ${this.props.size}`;
+  };
+
+  getPriceString = () => {
+    //función para escribir el precio en el header
+    switch (parseInt(this.props.price, 10)) {
+      case 1:
+        return "Económico";
+      case 2:
+        return "Mediano";
+      case 3:
+        return "Costoso";
+      case 4:
+        return "Muy costoso";
+      default:
+        return "De cualquier precio";
+    }
+  };
+
+  getCountryString = () => {
+    return this.props.country === "any"
+      ? "De cualquier país"
+      : `País: ${this.props.country}`;
+  };
+
   render() {
     const {
       handleInput,
@@ -14,54 +70,6 @@ class Header extends React.Component {
       filtersReset
     } = this.props;
 
-    const getDateValue = (date) => {
-      //función para escribir el precio en el header
-      return date === "" ? "" : date.toISOString().substr(0, 10);
-    };
-
-    let options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    };
-
-    const getDateString = () => {
-      //función para escribir la fecha en el header
-      return `Desde: ${
-        availabilityFrom &&
-        availabilityFrom.toLocaleDateString("es-ES", options)
-      } 
-              Hasta: ${
-                availabilityTo &&
-                availabilityTo.toLocaleDateString("es-ES", options)
-              }`;
-    };
-
-    const getSizeString = () => {
-      //función para escribir el tamaño en el header
-      return size === "any" ? "De cualquier tamaño" : `De tamaño ${size}`;
-    };
-
-    const getPriceString = () => {
-      //función para escribir el precio en el header
-      switch (parseInt(price, 10)) {
-        case 1:
-          return "Económico";
-        case 2:
-          return "Mediano";
-        case 3:
-          return "Costoso";
-        case 4:
-          return "Muy costoso";
-        default:
-          return "De cualquier precio";
-      }
-    };
-    const getCountryString = () => {
-      return country === "any" ? "De cualquier país" : `País: ${country}`;
-    };
-
     return (
       <div className="header">
         <div className="info">
@@ -69,13 +77,13 @@ class Header extends React.Component {
             Hoteles <i className="fas fa-umbrella-beach"></i>
           </h1>
           <h2>
-            {getDateString()}
+            {this.getDateString()}
             <br />
-            {getCountryString()}
+            {this.getCountryString()}
             <br />
-            {getPriceString()}
+            {this.getPriceString()}
             <br />
-            {getSizeString()}
+            {this.getSizeString()}
           </h2>
         </div>
         <div className="filters-bar">
@@ -86,8 +94,8 @@ class Header extends React.Component {
                 type="date"
                 id="start"
                 name="availabilityFrom"
-                value={getDateValue(availabilityFrom)}
-                min={getDateValue(today)} //obtengo la fecha desde today
+                value={this.getDateValue(availabilityFrom)}
+                min={this.getDateValue(today)} //obtengo la fecha desde today
                 onChange={handleDate}
                 //max={hoy.valueOf() + 31560000} no nos hace falta
               />
@@ -98,8 +106,8 @@ class Header extends React.Component {
                 type="date"
                 id="start"
                 name="availabilityTo"
-                value={getDateValue(availabilityTo)}
-                min={getDateValue(availabilityFrom)}
+                value={this.getDateValue(availabilityTo)}
+                min={this.getDateValue(availabilityFrom)}
                 onChange={handleDate}
                 //max="2018-12-31" no nos hace falta
               />
