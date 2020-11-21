@@ -140,7 +140,7 @@ class Header extends React.Component {
             </div>
           </form>
           <button className="reset-filters" onClick={filtersReset}>
-            Resetear Filtros
+            <i className="fas fa-trash-alt"></i> Limpiar filtros
           </button>
         </div>
       </div>
